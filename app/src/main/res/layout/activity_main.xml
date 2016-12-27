@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.shido.broadcastreceiverdemo.MainActivity">
+
+
+    <Button
+        android:text="Broadcast now"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="42dp"
+        android:layout_marginBottom="204dp"
+        android:id="@+id/button"
+        android:onClick="sendBroadCastMessage"/>
+
+    <Button
+        android:text="To Inner Receiver"
+        android:onClick="broadcastToInnerReceiver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/button"
+        android:layout_marginStart="78dp"
+        android:layout_marginTop="63dp"
+        android:id="@+id/button2"/>
+</RelativeLayout>
