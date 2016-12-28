@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.shido.broadcastreceiverdemo">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,9 +19,38 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".MyFirstReceiver" />
-        <receiver android:name=".MainActivity$MyThirdReceiverInner" />
 
+        <!--A ordem determinada aqui será a ordem que esses receivers serão chamados-->
+        <receiver android:name=".MyFirstReceiver">
+            <intent-filter> <!-- Filtro que irá ver por aquela action especifica -->
+                <action android:name="my.custom.action.name"/>
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".MySecondReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.AIRPLANE_MODE"/>
+
+                <!--
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED"/>
+                <action android:name="android.net.wifi.STATE_CHANGE"/>
+                States apenas para wi fi
+                -->
+
+                <!-- Mudança de conectividade de wi fi e 3g podendo tratar individualmente -->
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+
+
+            </intent-filter>
+
+        </receiver>
+        <receiver android:name=".MainActivity$MyThirdReceiverInner">
+            <intent-filter>
+                <action android:name="my.custom.anotheraction.name"/>
+            </intent-filter>
+        </receiver>
 
     </application>
 
