@@ -19,7 +19,10 @@
             </intent-filter>
         </activity>
 
+<!-- Intent Comuns
+https://developer.android.com/guide/components/intents-common.html
 
+-->
         <!--A ordem determinada aqui será a ordem que esses receivers serão chamados-->
         <receiver android:name=".MyFirstReceiver">
             <intent-filter> <!-- Filtro que irá ver por aquela action especifica -->
