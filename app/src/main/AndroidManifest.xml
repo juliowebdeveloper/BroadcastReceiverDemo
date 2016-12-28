@@ -25,7 +25,7 @@ https://developer.android.com/guide/components/intents-common.html
 -->
         <!--A ordem determinada aqui será a ordem que esses receivers serão chamados-->
         <receiver android:name=".MyFirstReceiver">
-            <intent-filter> <!-- Filtro que irá ver por aquela action especifica -->
+            <intent-filter android:priority="10"> <!-- Filtro que irá ver por aquela action especifica -->
                 <action android:name="my.custom.action.name"/>
             </intent-filter>
         </receiver>
@@ -33,25 +33,29 @@ https://developer.android.com/guide/components/intents-common.html
             android:name=".MySecondReceiver"
             android:enabled="true"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.AIRPLANE_MODE"/>
+            <intent-filter android:priority="20">
+                <action android:name="my.custom.action.name"/>
 
                 <!--
+                    <action android:name="android.intent.action.AIRPLANE_MODE"/>
+
                 <action android:name="android.net.wifi.WIFI_STATE_CHANGED"/>
                 <action android:name="android.net.wifi.STATE_CHANGE"/>
                 States apenas para wi fi
+
+                 Mudança de conectividade de wi fi e 3g podendo tratar individualmente
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+
                 -->
 
-                <!-- Mudança de conectividade de wi fi e 3g podendo tratar individualmente -->
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
 
 
             </intent-filter>
 
         </receiver>
         <receiver android:name=".MainActivity$MyThirdReceiverInner">
-            <intent-filter>
-                <action android:name="my.custom.anotheraction.name"/>
+            <intent-filter android:priority="30">
+                <action android:name="my.custom.action.name"/>
             </intent-filter>
         </receiver>
 
