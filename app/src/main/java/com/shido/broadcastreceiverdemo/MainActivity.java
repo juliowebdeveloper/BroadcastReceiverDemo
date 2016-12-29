@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         Bundle: An initial value for the result extras. Often null.*/
 
 
-        sendOrderedBroadcast(intent, null, null, null, Activity.RESULT_OK, "Android",b);
+        sendOrderedBroadcast(intent, null, new MyFourthReceiver(), null, Activity.RESULT_OK, "Android", b);
 
 
 
@@ -100,12 +100,31 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
 
+
+            //Os getters and setters só valem para um OrderedBroadcast
+            if(isOrderedBroadcast()) {
+                //extraindo o initial code
+                int initCode = getResultCode();
+                String data = getResultData();
+                Bundle initBundle = getResultExtras(true);
+                String name = initBundle.getString("name");
+
+                Log.i(TAG, "Init code: " + initCode + " data " + data + " name " + name);
+
+
            /* String name = intent.getStringExtra("name1");
             int age = intent.getIntExtra("age1", 0);
              Log.i(TAG, "NAME IS: " + name +" and age is " + String.valueOf(age)); */
 
                 Log.i(TAG, "hello from third Receiver");
-            Toast.makeText(context, "Hello from third receiver", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Hello from third receiver", Toast.LENGTH_LONG).show();
+
+                //Modificando a informação para passa-la para o proximo receiver (o second)
+                setResultCode(17);
+                setResultData("Ios");
+                initBundle.putString("name", "shidomaru");
+                setResultExtras(initBundle);
+            }
 
         }
 

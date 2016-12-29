@@ -3,6 +3,7 @@ package com.shido.broadcastreceiverdemo;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -25,10 +26,28 @@ public class MyFirstReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.i(TAG, "HELLO FROM FIRST RECEIBVER, thread name "+ Thread.currentThread().getName());
-        String name = intent.getStringExtra("name");
-        int age = intent.getIntExtra("age",0);
-        Log.i("NAME", name);
-        Log.i("AGE", String.valueOf(age));
+
+        if(isOrderedBroadcast()){
+            int initCode = getResultCode();
+            String data = getResultData();
+            Bundle bundle = getResultExtras(true);
+            String name = bundle.getString("name");
+
+            Log.i("First Receiver", "Init code: " + initCode + " data " + data + " name " + name);
+
+
+            bundle.putString("name", "Julio");
+            setResultExtras(bundle);
+
+            setResult(53, "Windows", bundle);
+
+
+        }
+
+        //String name = intent.getStringExtra("name");
+        //int age = intent.getIntExtra("age",0);
+       // Log.i("NAME", name);
+        //Log.i("AGE", String.valueOf(age));
         Toast.makeText(context, "hello from first receiver", Toast.LENGTH_LONG).show();
 
 
