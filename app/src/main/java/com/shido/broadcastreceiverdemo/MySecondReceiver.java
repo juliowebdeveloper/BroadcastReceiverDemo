@@ -32,7 +32,7 @@ public class MySecondReceiver extends BroadcastReceiver {
             setResultExtras(bundle);
 
             //setResult(55, "testemobile", bundle);
-
+            //abortBroadcast();
 
         }
 
