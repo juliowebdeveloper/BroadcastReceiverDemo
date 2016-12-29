@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         boolean containsReceiver = receivers.contains(timeTickReceiver);
         if(containsReceiver){
             unregisterReceiver(timeTickReceiver);
+            receivers.remove(timeTickReceiver);
         }
 
     }
@@ -68,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
         boolean containsReceiver = receivers.contains(timeTickReceiver);
         if(containsReceiver){
             unregisterReceiver(timeTickReceiver);
+            receivers.remove(timeTickReceiver);
+
         }
     }
 
